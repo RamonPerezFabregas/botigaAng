@@ -1,0 +1,32 @@
+<div class="col-md-12">
+  <h2>Llistat de productes (Pàgina: {{pag}})</h2>
+  <form [formGroup]="ProducteForm" (ngSubmit)="requestProducts()">
+    <div class="form-group">
+      <label form="pageChoice">Escull la teva pàgina:</label>
+      <select class="form-control" id="pageChoice" name="pageChoice" formControlName="pageSelected">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!ProducteForm.valid">Productes</button>
+  </form>
+  <div *ngIf="alertMessage" class="alert alert-danger" role="alert">{{alertMessage}}</div>
+</div>
+<div *ngIf="prods" class="prodsResult">
+  <div *ngFor="let prod of prods">
+    <div class="row show-grid"><div class="col-md-12">
+      ({{prod.id}}) {{prod.product_name}}
+       <a routerLink="/detall/{{prod.id}}" routerLinkActive="active">Detall</a>
+      <!-- button class="btn btn.primary" (onClick)="prodDetall({{prod.id}})">Detall</button -->
+    </div></div>
+    <div class="row show-grid"><div class="col-md-12"><img src="{{prod.product_image}}"></div></div>
+    <div class="row show-grid">
+      <div class="col-md-6">{{prod.product_dosage}}</div>
+      <div class="col-md-6">{{prod.product_price}}</div>
+    </div>
+  </div>
+</div>

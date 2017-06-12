@@ -1,0 +1,29 @@
+<!-- div class="col-md-12">
+  <h2>Prova</h2>
+  <form [formGroup]="ProducteForm" (ngSubmit)="productDetall()">
+    <div class="form-group">
+      <label form="pageChoice">Escull la teva pàgina:</label>
+      <input class="form-control" id="pageChoice" name="pageChoice" formControlName="producte">
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!ProducteForm.valid">Productes</button>
+  </form>
+  <div *ngIf="alertMessage" class="alert alert-danger" role="alert">{{alertMessage}}</div>
+</div -->
+<div *ngIf="prod" class="prodsResult jumbotron">
+  <div class="row show-grid"><div class="col-md-12">
+    ({{prod.id}}) {{prod.product_name}}
+    <!-- button class="btn btn.primary" (onClick)="prodDetall({{prod.id}})">Detall</button -->
+  </div></div>
+  <div class="row show-grid"><div class="col-md-12"><img src="{{prod.product_image}}"></div></div>
+  <div class="row show-grid">
+    <div class="col-md-6">{{prod.product_dosage}}</div>
+    <div class="col-md-6">{{prod.product_price}}</div>
+  </div>
+  <div class="row"><div class="col-md-12">{{prod.product_diagnosis}}</div></div>
+  <div class="row"><div class="col-md-12">{{prod.product_distributor}}</div></div>
+  <div class="row">
+    <div class="col-md-4">{{prod.distributor_address}}</div>
+    <div class="col-md-4">{{prod.distributor_email}}</div>
+    <div class="col-md-4">{{prod.distributor_phone}}</div>
+  </div>
+</div>
