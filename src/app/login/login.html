@@ -11,8 +11,8 @@
     </div>
     <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">Login</button>
   </form>
-  <div *ngIf="loginSuccess" class="alert alert-success" role="alert">ACCESS GRANTED</div>
-  <div *ngIf="loginFail" class="alert alert-danger" role="alert">ACCESS DENIED</div>
+  <div *ngIf="loginSuccess" class="alert alert-success" role="alert">Accés correcte</div>
+  <div *ngIf="loginFail" class="alert alert-danger" role="alert">Accés Denegat</div>
   <div *ngIf="alertMessage" class="alert alert-danger" role="alert">{{ alertMessage }}</div>
 </div>
 <br><br>

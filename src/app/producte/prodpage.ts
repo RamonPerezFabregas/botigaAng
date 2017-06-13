@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-
+import { AppGlobals } from '../globals'; 
+import { Router } from '@angular/router';
 import { ProdServei } from '../producte.servei';
+
 //import { producte } from '../producte';
 
 interface producte {
@@ -29,11 +31,15 @@ export class ProdPage implements OnInit{
   private pag: number;
   private prods: object;
   
-  constructor(private prodServ: ProdServei, private formBuilder: FormBuilder){
+  constructor(private prodServ: ProdServei, private formBuilder: FormBuilder, private glob: AppGlobals, private route: Router){
     this.ProducteForm = this.formBuilder.group({pageSelected: [1, Validators.required]} );
   }
   
-  ngOnInit(){}
+  ngOnInit(){
+    if ( this.glob.getLoginStatus() == false){
+      this.route.navigate(['./login']);
+    }
+  }
   
   requestProducts(){
     this.prods = null;

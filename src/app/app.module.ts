@@ -13,7 +13,7 @@ import { ProdPage } from './producte/prodpage';
 import { ProdDetall } from './producte/proddetall';
 import { ConnServei } from './conn.servei';
 import { ProdServei } from './producte.servei';
-//import { producte } from './producte';
+import { AppGlobals } from './globals';
 
 @NgModule({
   declarations: [
@@ -28,9 +28,8 @@ import { ProdServei } from './producte.servei';
     ReactiveFormsModule,
     HttpModule,
     AppRoutingModule
-   // InMemoryWebApiModule.forRoot(DbServei)
   ],
-  providers: [ConnServei, ProdServei],
+  providers: [ConnServei, ProdServei, AppGlobals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

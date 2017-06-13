@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ConnServei} from '../conn.servei';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ConnServei } from '../conn.servei';
+import { AppGlobals } from '../globals';
+import { Router } from '@angular/router';
 //import { Sessio } from '../sessio';
 //import { SessioServ } from '../sessio.servei';
 
@@ -22,7 +24,8 @@ export class LoginComp implements OnInit {
   private loginSuccess: boolean;
   private loginFail: boolean;
   
-  constructor( private connServei: ConnServei, private formBuilder: FormBuilder ) {
+  constructor( private connServei: ConnServei, private formBuilder: FormBuilder, private glob: AppGlobals, private route:Router ) {
+    this.glob.setLoginStatus(false);
   }
 
   ngOnInit() {
@@ -38,7 +41,7 @@ export class LoginComp implements OnInit {
   this.loginFail = null;
 
   const usuari = this.usuari.value;
-  const pass = this.pass.value;
+  const pass = this.pass.value
   
   this.connServei.checkLogin(usuari, pass)
     .then(data => {
@@ -47,9 +50,12 @@ export class LoginComp implements OnInit {
       if (response.status === 'KO') {
         // Server answer KO
         this.loginFail = true;
+        this.glob.setLoginStatus(false);
       } else {
         // Server answer OK
         this.loginSuccess = true;
+        this.glob.setLoginStatus(true);
+        this.route.navigate(['./list']);
       }
     })
     // Handle errors

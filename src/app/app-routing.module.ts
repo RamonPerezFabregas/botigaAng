@@ -6,6 +6,7 @@ import { ProdPage } from './producte/prodpage';
 import { LoginComp } from './login/login';
 
 const routes: Routes = [
+  { path: '',  redirectTo: '/login',  pathMatch: 'full' },
   { path: 'login', component: LoginComp },
   { path: 'detall/:id', component: ProdDetall },
   { path: 'list', component: ProdPage }
